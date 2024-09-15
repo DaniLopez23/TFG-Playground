@@ -19,7 +19,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cilindro",
+			"name":"Tanque",
 			"rotation":[
 				0,
 				0,
@@ -37,8 +37,8 @@
 			"name":"Pala1",
 			"rotation":[
 				0.7071068286895752,
-				0,
-				0,
+				0.00011442452523624524,
+				-0.00011442451796028763,
 				0.7071068286895752
 			],
 			"scale":[
@@ -74,20 +74,30 @@
 		},
 		{
 			"mesh":3,
-			"name":"Esfera",
+			"name":"ValvulaEntrada",
+			"scale":[
+				1,
+				0.6555077433586121,
+				0.6555077433586121
+			],
 			"translation":[
-				1.6618436574935913,
-				0.5863255262374878,
-				-0.333146333694458
+				1.5906295776367188,
+				0.8521290421485901,
+				0.03981563448905945
 			]
 		},
 		{
 			"mesh":4,
-			"name":"Esfera.001",
+			"name":"ValvulaSalida",
+			"scale":[
+				1,
+				0.6555077433586121,
+				0.6555077433586121
+			],
 			"translation":[
-				-1.7556073665618896,
-				0.5863255262374878,
-				-0.333146333694458
+				1.583068609237671,
+				0.8521290421485901,
+				-0.6513618230819702
 			]
 		}
 	],
@@ -101,7 +111,7 @@
 					0.800000011920929,
 					0.800000011920929,
 					0.800000011920929,
-					0.5
+					0.20183485746383667
 				],
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -150,7 +160,7 @@
 			]
 		},
 		{
-			"name":"Esfera",
+			"name":"Cubo",
 			"primitives":[
 				{
 					"attributes":{
@@ -163,7 +173,7 @@
 			]
 		},
 		{
-			"name":"Esfera.001",
+			"name":"Cubo.001",
 			"primitives":[
 				{
 					"attributes":{
@@ -276,63 +286,63 @@
 		{
 			"bufferView":11,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"max":[
-				0.19979867339134216,
-				0.20000000298023224,
-				0.19979871809482574
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
 			],
 			"min":[
-				-0.1997987926006317,
-				-0.20000000298023224,
-				-0.1997986137866974
+				-0.15000000596046448,
+				-0.15000000596046448,
+				-0.15000000596046448
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":12,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":13,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":14,
 			"componentType":5123,
-			"count":8160,
+			"count":36,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":15,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"max":[
-				0.19979867339134216,
-				0.20000000298023224,
-				0.19979871809482574
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
 			],
 			"min":[
-				-0.1997987926006317,
-				-0.20000000298023224,
-				-0.1997986137866974
+				-0.15000000596046448,
+				-0.15000000596046448,
+				-0.15000000596046448
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":16,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":17,
 			"componentType":5126,
-			"count":5520,
+			"count":24,
 			"type":"VEC2"
 		}
 	],
@@ -405,51 +415,51 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":66240,
+			"byteLength":288,
 			"byteOffset":16720,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":66240,
-			"byteOffset":82960,
+			"byteLength":288,
+			"byteOffset":17008,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":44160,
-			"byteOffset":149200,
+			"byteLength":192,
+			"byteOffset":17296,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":16320,
-			"byteOffset":193360,
+			"byteLength":72,
+			"byteOffset":17488,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":66240,
-			"byteOffset":209680,
+			"byteLength":288,
+			"byteOffset":17560,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":66240,
-			"byteOffset":275920,
+			"byteLength":288,
+			"byteOffset":17848,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":44160,
-			"byteOffset":342160,
+			"byteLength":192,
+			"byteOffset":18136,
 			"target":34962
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":386320,
-			"uri":"pruebaModeloTanque.bin"
+			"byteLength":18328,
+			"uri":"pruebaModeloTanque_v1.bin"
 		}
 	]
 }
