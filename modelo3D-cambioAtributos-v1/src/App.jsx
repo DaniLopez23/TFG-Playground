@@ -34,12 +34,12 @@ function App() {
       </Canvas>
 
       <div className="controls">
-        <button onClick={() => setValvulaEntradaState("green")}>Leche Entrando</button>
-        <button onClick={() => setValvulaEntradaState("red")}>Terminar de entrar leche</button>
-        <button onClick={() => setValvulaSalidaState("green")}>Leche saliendo</button>
-        <button onClick={() => setValvulaSalidaState("red")}>Terminar de salir leche</button>
-        <button onClick={() => setSpeed(speed + 0.1)}>Increase Speed</button>
-        <button onClick={() => setSpeed(speed - 0.1)}>Decrease Speed</button>
+        <button onClick={() => setValvulaEntradaState("green")}>ABRIR Valvula entrada leche</button>
+        <button onClick={() => setValvulaEntradaState("red")}>CERRAR Valvula entrada leche</button>
+        <button onClick={() => setValvulaSalidaState("green")}>ABRIR Valvula salida leche</button>
+        <button onClick={() => setValvulaSalidaState("red")}>CERRAR Valvula salida leche</button>
+        <button onClick={() => setSpeed(speed + 0.1)}>+ velocidad palas</button>
+        <button onClick={() => setSpeed(speed - 0.1)}>- velocidad palas</button>
       </div>
     </div>
   )
