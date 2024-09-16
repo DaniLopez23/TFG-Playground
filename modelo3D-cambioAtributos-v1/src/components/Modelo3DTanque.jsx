@@ -25,7 +25,7 @@ export default function Model3DTanque({valvulaEntradastate, valvulaSalidastate, 
   })
 
   return (
-    <group  dispose={null}>
+    <group dispose={null}>
       <mesh geometry={nodes.Tanque.geometry} material={materials['Material.001']} position={[-0.047, 1.356, -0.334]} rotation={[0, 0, -Math.PI / 2]} />
       <mesh ref={Pala1Mesh} geometry={nodes.Pala1.geometry} material={materials['default']} position={[0.714, 1.553, -0.325]} rotation={[Math.PI / 2, 0, 0]} scale={[0.127, 0.112, 3.029]} />
       <mesh ref={Pala2Mesh} geometry={nodes.Pala2.geometry} material={materials['default']} position={[-0.77, 1.575, -0.325]} rotation={[Math.PI / 2, 0, 0]} scale={[0.127, 0.112, 3.029]} />

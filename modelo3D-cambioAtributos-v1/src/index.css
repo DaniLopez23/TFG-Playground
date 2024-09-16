@@ -3,11 +3,17 @@ body, html, #root, .App {
   padding: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column; /* Alinea los elementos (canvas y controles) verticalmente */
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center;     /* Centra el contenido horizontalmente */
 }
 
 .canvas {
-  width: 100%;
-  height: 40vh; /* 50% of the viewport height */
+  width: 80vw;  /* 80% del ancho de la ventana */
+  height: 60vh; /* 60% de la altura de la ventana */
+  border: 1px solid black;
+  margin: 20px, 20px, 20px, 20px;
 }
 
 .controls {
