@@ -17,7 +17,8 @@
     "gltf-pipeline": "^4.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.168.0"
+    "three": "^0.168.0",
+    "three-csg-ts": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

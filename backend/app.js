@@ -7,6 +7,6 @@ const temperatureRouter = require("./controllers/temperature");
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/temperature", temperatureRouter);
+app.use("/sse/temperature", temperatureRouter);
 
 module.exports = app;

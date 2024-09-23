@@ -9,33 +9,33 @@ const org = config.INFLUX_ORG;
 const client = new InfluxDB({ url, token });
 
 temperatureRouter.get("/", (req, res) => {
+
   let queryClient = client.getQueryApi(org);
   let fluxQuery = `from(bucket: "farm-01")
-    |> range(start: -24h)  // Define el rango de tiempo explícitamente
-    |> filter(fn: (r) => r["_measurement"] == "temperature_probe")
-    |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)  // Define el período de ventana explícitamente
-    |> yield(name: "mean")`;
+  |> range(start: -2d)  // Definimos el rango, en este caso, las últimas 24 horas
+  |> filter(fn: (r) => r["_measurement"] == "temperature_probe")  // Filtramos solo las mediciones de la sonda de temperatura
+  |> last()  // Obtenemos solo el último valor de la serie temporal
+  |> yield(name: "last")`; // Nombramos el resultado como "last"
 
-    const results = [];
+  const results = [];
 
-    queryClient.queryRows(fluxQuery, {
-      next: (row, tableMeta) => {
-        const tableObject = tableMeta.toObject(row);
-        results.push(tableObject);
-      },
-      error: (error) => {
-        console.error(error);
-        if (!res.headersSent) {
-          res.status(500).send(error.message);
-        }
-      },
-      complete: () => {
-        if (!res.headersSent) {
-          res.status(200).json(results);
-        }
+  queryClient.queryRows(fluxQuery, {
+    next: (row, tableMeta) => {
+      const tableObject = tableMeta.toObject(row);
+      results.push(tableObject);
+    },
+    error: (error) => {
+      console.error(error);
+      if (!res.headersSent) {
+        res.status(500).send(error.message);
       }
-    });
-  
+    },
+    complete: () => {
+      if (!res.headersSent) {
+        res.status(200).json(results);
+      }
+    },
+  });
 });
 
 module.exports = temperatureRouter;
