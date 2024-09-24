@@ -12,10 +12,9 @@ module.exports = (io) => {
 
   // Establece el manejador para los mensajes entrantes
   mqttClient.onMessage((topic, message) => {
-    if (topic === 'farm-01/tank_temperature_probes') {
+    if (topic === 'farm-01/6_dof_imu') {
       lastTemperatureMessage = { topic, message };
-      console.log('New message from:', topic);
-      io.broadcast.emit('tank_temperature_probes', lastTemperatureMessage); // Emitir a todos los clientes
+      io.emit('tank_temperature_probes', lastTemperatureMessage); // Emitir a todos los clientes
     }
   });
 

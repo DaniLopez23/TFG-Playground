@@ -1,12 +1,31 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Plane } from "@react-three/drei";
 import Model from "./components/ModeloTanqueVertical2Palas";
+import { socket } from "./components/WebSockets/Socket";
+import Temperature from "./components/SensorData/Temperature"; // Ajusta la ruta según sea necesario
 
 function App() {
   const [speed, setSpeed] = useState(1);
   const [milkQuantity, setmilkQuantity] = useState(0);
 
+  useEffect(() => {
+    const onConnect = () => {
+      console.log("Connected to server");
+    };
+
+    const onDisconnect = () => {
+      console.log("Disconnected from server");
+    };
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, []);
   return (
     <div className="App">
       <Canvas className="canvas">
@@ -50,7 +69,9 @@ function App() {
         />
       </div>
 
-      <div></div>
+      <div>
+        <Temperature />
+      </div>
     </div>
   );
 }
