@@ -24,7 +24,6 @@ io.on("connection", (socket) => {
 
 const mqttClient = new MqttHandler();
 mqttClient.connect();
-mqttClient.subscribe("farm-01/6_dof_imu");
 // Variable para almacenar el último mensaje del tópico específico
 let lastTemperatureMessage = null;
 
@@ -32,7 +31,6 @@ let lastTemperatureMessage = null;
 mqttClient.onMessage((topic, message) => {
   if (topic === "farm-01/6_dof_imu") {
     lastTemperatureMessage = { topic, message };
-    console.log("Message received", topic);
     io.emit("tank_temperature_probes", lastTemperatureMessage); // Emitir a todos los clientes
   }
 });
