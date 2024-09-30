@@ -1,38 +1,34 @@
 const express = require("express");
 const http = require("http");
-const socketIo = require("socket.io");
 const cors = require("cors");
+
 const MqttHandler = require("./utils/MqttHandler");
+const WebSocketHandler = require("./utils/WebSocketHandler");
 
 const app = express();
 
-app.use(cors()); // Configura el middleware de CORS
+const dataHandling = require("./utils/dataHandling");
+
+const corsOptions = {
+  origin: "http://localhost:5173", // Asegúrate de que esta URL sea la correcta
+};
+
+app.use(cors(corsOptions)); // Configura el middleware de CORS
 
 const server = http.createServer(app);
-const io = socketIo(server, {
-  cors: {
-    origin: "http://localhost:5173", // Asegúrate de que esta URL sea la correcta
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log("New client connected");
-  socket.on("disconnect", () => {
-    console.log("Client disconnected");
-  });
-});
+const webSocketHandler = new WebSocketHandler(server);
+webSocketHandler.init();
 
 const mqttClient = new MqttHandler();
 mqttClient.connect();
-// Variable para almacenar el último mensaje del tópico específico
-let lastTemperatureMessage = null;
+
 
 // Establece el manejador para los mensajes entrantes
 mqttClient.onMessage((topic, message) => {
-  if (topic === "farm-01/6_dof_imu") {
-    lastTemperatureMessage = { topic, message };
-    io.emit("tank_temperature_probes", lastTemperatureMessage); // Emitir a todos los clientes
-  }
+
+  const processedData = dataHandling.processData(topic, message); // Procesar los datos
+
+  webSocketHandler.emit(topic, processedData); // Emitir a todos los clientes
 });
 
 // Desconectar el cliente MQTT cuando el servidor se cierra

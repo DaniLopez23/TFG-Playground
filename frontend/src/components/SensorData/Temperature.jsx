@@ -10,10 +10,10 @@ const Temperature = () => {
       setTemperature(data.message);
     };
 
-    socket.on("tank_temperature_probes", onTemperature);
+    socket.on("synthetic-farm-1/tank_temperature_probes", onTemperature);
 
     return () => {
-      socket.off("tank_temperature_probes", onTemperature);
+      socket.off("synthetic-farm-1/tank_temperature_probes", onTemperature);
     };
   }, []);
 
@@ -21,7 +21,7 @@ const Temperature = () => {
     <div>
       <p>
         {temperature === 0
-          ? "no data received yet"
+          ? "Temperature: no data received yet"
           : `Temperature: ${temperature}`}
       </p>
     </div>

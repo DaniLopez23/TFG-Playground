@@ -1,5 +1,7 @@
 const mqtt = require("mqtt");
+
 const config = require("./config");
+const topics = require("./topics");
 
 const url = `mqtts://${config.MQTT_HOST}:${config.MQTT_PORT}`;
 console.log(url);
@@ -18,6 +20,7 @@ class MqttHandler {
     this.mqttClient = mqtt.connect(this.host, {
       username: this.username,
       password: this.password,
+      rejectUnauthorized: false // REMOVE THIS FOR PRODUCTION PORPUSE 
     });
 
     // Mqtt error callback
@@ -32,28 +35,7 @@ class MqttHandler {
     });
 
     // mqtt subscriptions
-    this.mqttClient.subscribe("farm-01/6_dof_imu", (err) => {
-      if (err) {
-        console.log("Subscription error: ", err);
-      }
-    });
-
-    // mqtt subscriptions
-    this.mqttClient.subscribe("farm-01/board_temperature", (err) => {
-      if (err) {
-        console.log("Subscription error: ", err);
-      }
-    });
-
-    // mqtt subscriptions
-    this.mqttClient.subscribe("farm-01/tank_temperature_probes", (err) => {
-      if (err) {
-        console.log("Subscription error: ", err);
-      }
-    });
-
-    // mqtt subscriptions
-    this.mqttClient.subscribe("farm-01/board_status", (err) => {
+    this.mqttClient.subscribe(topics, (err) => {
       if (err) {
         console.log("Subscription error: ", err);
       }

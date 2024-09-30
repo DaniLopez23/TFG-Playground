@@ -1,14 +1,18 @@
 import React, { useState, Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Plane } from "@react-three/drei";
-import Model from "./components/ModeloTanqueVertical2Palas";
+import VericalModel from "./components/ModeloTanqueVertical2Palas";
+import HorizontalModel from "./components/ModeloTanqueHorizontal2Palas";
 import { socket } from "./components/WebSockets/Socket";
 import Temperature from "./components/SensorData/Temperature"; // Ajusta la ruta según sea necesario
+import Gyroscope from "./components/SensorData/Gyroscope";
+import MilkQuantity from "./components/SensorData/MilkQuantity";
+
 
 function App() {
   const [speed, setSpeed] = useState(1);
   const [milkQuantity, setmilkQuantity] = useState(0);
-
+  const [mappingPosition, setMappingPosition] = useState(0);
   useEffect(() => {
     const onConnect = () => {
       console.log("Connected to server");
@@ -34,7 +38,8 @@ function App() {
         <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
         <Suspense fallback={null}>
-          <Model milkQuantity={milkQuantity} speed={speed} />
+          <VericalModel milkQuantity={milkQuantity} speed={speed} />
+          {/* <HorizontalModel milkQuantity={mappingPosition} speed={speed} /> */}
 
           {/* Suelo */}
           <Plane
@@ -67,10 +72,20 @@ function App() {
           value={milkQuantity}
           onChange={(e) => setmilkQuantity(parseFloat(e.target.value))}
         />
+        <input
+          type="range"
+          min="-1"
+          max="1"
+          step="0.01"
+          value={mappingPosition}
+          onChange={(e) => setMappingPosition(parseFloat(e.target.value))}
+        />
       </div>
 
       <div>
         <Temperature />
+        <Gyroscope />
+        <MilkQuantity />
       </div>
     </div>
   );

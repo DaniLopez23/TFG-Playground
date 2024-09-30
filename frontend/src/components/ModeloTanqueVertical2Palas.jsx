@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.0 .\public\modeloTanqueVertical2Palas.glb
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export default function Model({milkQuantity, speed, ...props}) {
+export default function VericalModel({milkQuantity, speed, ...props}) {
   const { nodes, materials } = useGLTF('/modeloTanqueVertical2Palas.glb')
   return (
     <group {...props} dispose={null}>
