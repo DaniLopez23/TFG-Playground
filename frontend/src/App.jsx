@@ -1,8 +1,11 @@
 import React, { useState, Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Plane } from "@react-three/drei";
+
 import VericalModel from "./components/ModeloTanqueVertical2Palas";
 import HorizontalModel from "./components/ModeloTanqueHorizontal2Palas";
+import HorizontalTankModel from "./components/HorizontalTankModel";
+
 import { socket } from "./components/WebSockets/Socket";
 import Temperature from "./components/SensorData/Temperature"; // Ajusta la ruta según sea necesario
 import Gyroscope from "./components/SensorData/Gyroscope";
@@ -39,7 +42,7 @@ function App() {
 
         <Suspense fallback={null}>
           <VericalModel milkQuantity={milkQuantity} speed={speed} />
-          {/* <HorizontalModel milkQuantity={mappingPosition} speed={speed} /> */}
+          <HorizontalTankModel milkQuantity={milkQuantity} speed={speed} />
 
           {/* Suelo */}
           <Plane
@@ -59,6 +62,7 @@ function App() {
             maxPolarAngle={Math.PI / 1.2 / 2} // Evita que la cámara vea por debajo del objeto
           />
         </Suspense>
+
       </Canvas>
 
       <div className="controls">
@@ -71,14 +75,6 @@ function App() {
           step={0.01}
           value={milkQuantity}
           onChange={(e) => setmilkQuantity(parseFloat(e.target.value))}
-        />
-        <input
-          type="range"
-          min="-1"
-          max="1"
-          step="0.01"
-          value={mappingPosition}
-          onChange={(e) => setMappingPosition(parseFloat(e.target.value))}
         />
       </div>
 
